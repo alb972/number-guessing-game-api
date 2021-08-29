@@ -1,0 +1,37 @@
+{
+  "name": "number-guessing-game-api",
+  "version": "0.0.1",
+  "description": "**Niveau:** 1-Débutant",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier:check": "prettier --config .prettierrc --check src/",
+    "prettier:format": "prettier --config .prettierrc src/ --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alb972/number-guessing-game-api.git"
+  },
+  "keywords": [
+    "game",
+    "number guessing",
+    "api"
+  ],
+  "author": "Andy Dufrenot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alb972/number-guessing-game-api/issues"
+  },
+  "homepage": "https://github.com/alb972/number-guessing-game-api#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "~1.9.1",
+    "swagger-jsdoc": "5.0.1",
+    "swagger-ui-express": "^4.1.6",
+    "uuidjs": "^4.2.8"
+  },
+  "devDependencies": {
+    "prettier": "^2.3.2"
+  }
+}
