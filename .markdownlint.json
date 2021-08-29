@@ -1,0 +1,18 @@
+{
+    "MD046": {
+        "style": "fenced"
+    },
+    "MD001": false,
+    "MD029": {
+        "style": "one_or_ordered"
+    },
+    "MD004": {
+        "style": "dash"
+    },
+    "MD033": {
+        "allowed_elements": [
+            "br",
+            "aside"
+        ]
+    }
+}
