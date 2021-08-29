@@ -1,0 +1,7 @@
+node_modules
+bin/*
+build/*
+docs/*
+production_node_modules/*
+test/fixtures/*
+tmp/*

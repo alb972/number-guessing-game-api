@@ -1,0 +1,19 @@
+{
+    "printWidth": 120,
+    "proseWrap": "preserve",
+    "semi": true,
+    "singleQuote": false,
+    "useTabs": false,
+    "tabWidth": 2,
+    "arrowParens": "always",
+    "trailingComma": "es5",
+    "jsxBracketSameLine": true,
+    "overrides": [
+        {
+            "files": "*.json",
+            "options": {
+                "tabWidth": 4
+            }
+        }
+    ]
+}
