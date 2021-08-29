@@ -4,6 +4,8 @@
 
 Back-end (NodeJS) that manages the number guessing game.
 
+Try it [Docs](https://api.alby-planet.com)
+
 ## User Stories
 
 - [ ] Users can make proposition with a form
