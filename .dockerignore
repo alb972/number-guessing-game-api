@@ -1,0 +1,7 @@
+.markdownlint.json
+.gitingore
+.prettierignore
+.prettierrc
+*.md
+docker-compose.yml
+Dockerfile

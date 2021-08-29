@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/alb972/number-guessing-game-api#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "morgan": "~1.9.1",
     "swagger-jsdoc": "5.0.1",
