@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+  ngg-api:
+    image: number-guessing-game-api
+    container_name: node-server-local
+    restart: always
+    command: node /app/index.js
+    ports:
+      - "3000:3000"
+    labels:
+      - "traefik.enable=true"
+      # router
+      - "traefik.http.routers.router2.rule=Host(`api.alby-planet.com`)"
+      - "traefik.http.routers.router2.tls=true"
+      - "traefik.http.routers.router2.entrypoints=websecure"
+      - "traefik.http.routers.router2.tls.certresolver=acme-http"
+      # middleware
+      - "traefik.http.routers.router2-redirect.entrypoints=web"
+      - "traefik.http.routers.router2-redirect.middlewares=https-redirect"
+      - "traefik.http.routers.router2-redirect.rule=Host(`api.alby-planet.com`)"
+    networks:
+      - traefik_default
+      
+networks:
+  default:
+  traefik_default:
+    external:
+      name: traefik_default
