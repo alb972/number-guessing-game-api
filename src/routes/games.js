@@ -13,8 +13,9 @@ let games = [];
  * @param {*} res
  */
 const createGame = (req, res) => {
+  const levelToCreate = req.body.level;
   const newPlayer = new Player(UUID.generate());
-  const createdGame = new Game(UUID.generate(), [newPlayer]);
+  const createdGame = new Game(UUID.generate(), levelToCreate, [newPlayer], 10);
 
   // Store game
   games = [...games, createdGame];
@@ -68,37 +69,55 @@ const sendProposition = (req, res) => {
   const propositionToSave = req.body.proposition;
   res.type("application/json");
 
-  if (Number.isNaN(propositionToSave)) {
-    res.status(400);
-    res.json({ error: "bad request: cannot make proposition." });
-  } else {
-    games = games.map((gameToCompare) => {
-      if (gameToCompare.id == idToSearch) {
-        return new Game(
-          gameToCompare.getId(),
-          gameToCompare.getPlayers(),
-          gameToCompare.getCurrentGuess(),
-          gameToCompare.getPropositions().concat(propositionToSave)
-        );
-      } else {
-        return gameToCompare;
-      }
-    });
-
+  if (propositionToSave !== null && !Number.isNaN(propositionToSave)) {
     // Search game
     const gameFound = games.find((gameToCompare) => {
       return gameToCompare.id == idToSearch;
     });
 
     if (gameFound) {
-      res.status(200);
-      res.json({
-        state: gameFound.checkVictory(),
-      });
+      // If Game continue
+      if (gameFound.checkVictory() == "FOUND" || gameFound.checkVictory() == "MAX_PROPOSITION_ACHIEVED") {
+        res.status(200);
+        res.json({
+          state: gameFound.checkVictory(),
+          propositions: gameFound.getPropositions(),
+        });
+      } else {
+        // Add new proposition
+        games = games.map((gameToCompare) => {
+          if (gameToCompare.id == idToSearch) {
+            return new Game(
+              gameToCompare.getId(),
+              gameToCompare.getLevel(),
+              gameToCompare.getPlayers(),
+              gameToCompare.getMaxTryPermitted(),
+              gameToCompare.getCurrentGuess(),
+              gameToCompare.getPropositions().concat(propositionToSave)
+            );
+          } else {
+            return gameToCompare;
+          }
+        });
+
+        // Search game
+        const gameToCheck = games.find((gameToCompare) => {
+          return gameToCompare.id == idToSearch;
+        });
+
+        res.status(200);
+        res.json({
+          state: gameToCheck.checkVictory(),
+          propositions: gameToCheck.getPropositions(),
+        });
+      }
     } else {
       res.status(404);
-      res.json({ error: "not found: cannot make proposition." });
+      res.json({ error: "not found: game has been lost. start a new game." });
     }
+  } else {
+    res.status(400);
+    res.json({ error: "bad request: it's not a correct proposition." });
   }
 };
 
