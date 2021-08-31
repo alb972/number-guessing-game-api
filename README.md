@@ -8,13 +8,13 @@ Try it [Docs](https://api.alby-planet.com)
 
 ## User Stories
 
-- [ ] Users can make proposition with a form
-- [ ] Users should submit its proposition with a button action
-- [ ] Users will be notified after each propositions.
+- [x] Users can make proposition with a form
+- [x] Users should submit its proposition with a button action
+- [x] Users will be notified after each propositions.
 
 ## Bonus features
 
-- [ ] Users can change difficulty level.
+- [x] Users can change difficulty level.
 
 ## Useful links and resources
 
